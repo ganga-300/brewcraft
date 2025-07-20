@@ -151,11 +151,11 @@ export default function Index() {
             whileInView="animate"
             viewport={{ once: true }}
           >
-            {[
+                        [
               {
                 name: "Heritage Roast",
                 description: "Rich, full-bodied blend with notes of dark chocolate and caramelized sugar",
-                price: "$4.50",
+                price: "₹360",
                 rating: 4.9,
                 image: "https://images.pexels.com/photos/6205530/pexels-photo-6205530.jpeg",
                 popular: true
@@ -163,20 +163,24 @@ export default function Index() {
               {
                 name: "Golden Morning",
                 description: "Bright and smooth with hints of honey and citrus fruits",
-                price: "$5.25",
+                price: "₹420",
                 rating: 4.8,
                 image: "https://images.pexels.com/photos/5192030/pexels-photo-5192030.jpeg"
               },
               {
                 name: "Midnight Espresso",
                 description: "Bold, intense espresso perfect for those who crave depth",
-                price: "$3.75",
+                price: "₹300",
                 rating: 4.7,
                 image: "https://images.pexels.com/photos/14745651/pexels-photo-14745651.jpeg"
               }
             ].map((coffee, index) => (
               <motion.div key={index} variants={fadeIn}>
-                <Card className="group hover:shadow-2xl transition-all duration-500 border-0 bg-white/80 backdrop-blur-sm overflow-hidden">
+                                <motion.div
+                  whileHover={{ y: -8 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <Card className="border-0 bg-white/80 backdrop-blur-sm overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <div className="relative h-64 overflow-hidden">
                     <img 
                       src={coffee.image} 
@@ -199,13 +203,14 @@ export default function Index() {
                       </div>
                       <span className="text-2xl font-bold text-primary">{coffee.price}</span>
                     </div>
-                    <motion.div className="mt-6" {...scaleOnHover}>
+                                        <div className="mt-6">
                       <Button className="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg font-semibold transition-all duration-300">
                         Add to Order
                       </Button>
-                    </motion.div>
+                                        </div>
                   </CardContent>
                 </Card>
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>

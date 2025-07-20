@@ -24,3 +24,18 @@ dist-ssr
 *.sw?
 
 .config/
+
+# AI Development Tools
+.cursor/
+.cursor-*
+*.cursor*
+.aider*
+.gpt*
+.chatgpt*
+.claude*
+.copilot*
+
+# Other AI-related files
+.ai/
+ai-*
+assistant-*

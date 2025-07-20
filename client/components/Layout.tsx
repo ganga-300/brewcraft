@@ -1,9 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Coffee, MapPin, Phone, Mail, Menu, Instagram, Facebook, Twitter } from "lucide-react";
+import { Coffee, MapPin, Phone, Mail, Menu, Instagram, Facebook, Twitter, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useCart } from "@/contexts/CartContext";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -12,6 +14,7 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const { state } = useCart();
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -62,10 +65,26 @@ export default function Layout({ children }: LayoutProps) {
           </nav>
 
           <div className="flex items-center gap-4">
+            {/* Cart Icon */}
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button asChild variant="ghost" size="icon" className="relative">
+                <Link to="/cart">
+                  <ShoppingCart className="h-5 w-5" />
+                  {state.items.length > 0 && (
+                    <Badge 
+                      className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center bg-primary text-primary-foreground text-xs"
+                    >
+                      {state.items.reduce((total, item) => total + item.quantity, 0)}
+                    </Badge>
+                  )}
+                </Link>
+              </Button>
+            </motion.div>
+
             {/* Order Now Button */}
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button className="bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white hidden sm:flex font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
-                Order Now
+              <Button asChild className="bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white hidden sm:flex font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+                <Link to="/menu">Order Now</Link>
               </Button>
             </motion.div>
 
@@ -97,10 +116,11 @@ export default function Layout({ children }: LayoutProps) {
                     </Link>
                   ))}
                   <Button 
+                    asChild
                     className="bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white mt-6 font-semibold" 
                     onClick={() => setIsOpen(false)}
                   >
-                    Order Now
+                    <Link to="/menu">Order Now</Link>
                   </Button>
                 </nav>
               </SheetContent>
@@ -178,7 +198,7 @@ export default function Layout({ children }: LayoutProps) {
               <ul className="space-y-4 text-coffee-200">
                 <li className="flex items-center space-x-3">
                   <Phone className="h-5 w-5 text-gold-400" />
-                                    <span>+91 98765 BREW (27393)</span>
+                  <span>+91 98765 BREW (27393)</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <Mail className="h-5 w-5 text-gold-400" />
@@ -186,7 +206,7 @@ export default function Layout({ children }: LayoutProps) {
                 </li>
                 <li className="flex items-center space-x-3">
                   <MapPin className="h-5 w-5 text-gold-400" />
-                                    <span>Connaught Place, New Delhi</span>
+                  <span>Connaught Place, New Delhi</span>
                 </li>
               </ul>
             </div>

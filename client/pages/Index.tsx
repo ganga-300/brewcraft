@@ -19,11 +19,6 @@ export default function Index() {
     }
   };
 
-  const scaleOnHover = {
-    whileHover: { scale: 1.05 },
-    transition: { type: "spring", stiffness: 300 }
-  };
-
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -151,7 +146,7 @@ export default function Index() {
             whileInView="animate"
             viewport={{ once: true }}
           >
-                        [
+            {[
               {
                 name: "Heritage Roast",
                 description: "Rich, full-bodied blend with notes of dark chocolate and caramelized sugar",
@@ -175,17 +170,18 @@ export default function Index() {
                 image: "https://images.pexels.com/photos/14745651/pexels-photo-14745651.jpeg"
               }
             ].map((coffee, index) => (
-              <motion.div key={index} variants={fadeIn}>
-                                <motion.div
-                  whileHover={{ y: -8 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  <Card className="border-0 bg-white/80 backdrop-blur-sm overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <motion.div 
+                key={index} 
+                variants={fadeIn}
+                whileHover={{ y: -8 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
+                <Card className="border-0 bg-white/80 backdrop-blur-sm overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <div className="relative h-64 overflow-hidden">
                     <img 
                       src={coffee.image} 
                       alt={coffee.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="w-full h-full object-cover transition-transform duration-500"
                     />
                     {coffee.popular && (
                       <div className="absolute top-4 right-4 bg-gold-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
@@ -203,14 +199,13 @@ export default function Index() {
                       </div>
                       <span className="text-2xl font-bold text-primary">{coffee.price}</span>
                     </div>
-                                        <div className="mt-6">
+                    <div className="mt-6">
                       <Button className="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg font-semibold transition-all duration-300">
                         Add to Order
                       </Button>
-                                        </div>
+                    </div>
                   </CardContent>
                 </Card>
-                </motion.div>
               </motion.div>
             ))}
           </motion.div>
@@ -272,7 +267,7 @@ export default function Index() {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <div className="mb-8 flex justify-center">
-                  <div className="w-20 h-20 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                  <div className="w-20 h-20 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full flex items-center justify-center shadow-xl">
                     <feature.icon className="h-10 w-10 text-espresso-900" />
                   </div>
                 </div>
@@ -403,7 +398,7 @@ export default function Index() {
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <motion.div {...scaleOnHover}>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button 
                 size="lg" 
                 className="bg-gold-600 hover:bg-gold-700 text-espresso-900 text-lg px-12 py-6 rounded-full font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
@@ -412,7 +407,7 @@ export default function Index() {
               </Button>
             </motion.div>
             
-            <motion.div {...scaleOnHover}>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button 
                 size="lg" 
                 variant="outline"

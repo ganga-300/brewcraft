@@ -178,7 +178,7 @@ export default function Layout({ children }: LayoutProps) {
               <ul className="space-y-4 text-coffee-200">
                 <li className="flex items-center space-x-3">
                   <Phone className="h-5 w-5 text-gold-400" />
-                  <span>(555) 123-BREW</span>
+                                    <span>+91 98765 BREW (27393)</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <Mail className="h-5 w-5 text-gold-400" />
@@ -186,7 +186,7 @@ export default function Layout({ children }: LayoutProps) {
                 </li>
                 <li className="flex items-center space-x-3">
                   <MapPin className="h-5 w-5 text-gold-400" />
-                  <span>Downtown Coffee District</span>
+                                    <span>Connaught Place, New Delhi</span>
                 </li>
               </ul>
             </div>

@@ -3,8 +3,28 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Coffee, Star, Clock, MapPin, ChefHat, Leaf, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useCart } from "@/contexts/CartContext";
+import { toast } from "sonner";
 
 export default function Index() {
+  const { dispatch } = useCart();
+
+  const addToCart = (item: any) => {
+    dispatch({
+      type: 'ADD_ITEM',
+      payload: {
+        id: item.name.toLowerCase().replace(/\s+/g, '-'),
+        name: item.name,
+        price: item.price,
+        image: item.image,
+        category: 'coffee' as const,
+        quantity: 1
+      }
+    });
+    
+    toast.success(`${item.name} added to cart!`);
+  };
+
   const fadeIn = {
     initial: { opacity: 0, y: 30 },
     animate: { opacity: 1, y: 0 },
@@ -68,7 +88,7 @@ export default function Index() {
             transition={{ duration: 0.8, delay: 1 }}
           >
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button size="lg" className="bg-gold-600 hover:bg-gold-700 text-white text-lg px-12 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300">
+              <Button asChild size="lg" className="bg-gold-600 hover:bg-gold-700 text-white text-lg px-12 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300">
                 <Link to="/menu" className="flex items-center gap-3">
                   <Coffee className="h-6 w-6" />
                   Explore Our Menu
@@ -78,6 +98,7 @@ export default function Index() {
             
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button 
+                asChild
                 size="lg" 
                 variant="outline" 
                 className="border-2 border-gold-400 text-gold-100 hover:bg-gold-400 hover:text-espresso-900 text-lg px-12 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 backdrop-blur-sm"
@@ -175,8 +196,9 @@ export default function Index() {
                 variants={fadeIn}
                 whileHover={{ y: -8 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="h-[500px]"
               >
-                <Card className="border-0 bg-white/80 backdrop-blur-sm overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <Card className="border-0 bg-white/80 backdrop-blur-sm overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
                   <div className="relative h-64 overflow-hidden">
                     <img 
                       src={coffee.image} 
@@ -189,21 +211,22 @@ export default function Index() {
                       </div>
                     )}
                   </div>
-                  <CardContent className="p-8">
+                  <CardContent className="p-8 flex-1 flex flex-col">
                     <h3 className="text-2xl font-bold mb-3 text-espresso-900">{coffee.name}</h3>
-                    <p className="text-espresso-600 mb-6 line-height-relaxed">{coffee.description}</p>
-                    <div className="flex items-center justify-between">
+                    <p className="text-espresso-600 mb-6 line-height-relaxed flex-1">{coffee.description}</p>
+                    <div className="flex items-center justify-between mb-6">
                       <div className="flex items-center gap-2">
                         <Star className="h-5 w-5 fill-gold-400 text-gold-400" />
                         <span className="text-sm font-medium text-espresso-700">{coffee.rating}</span>
                       </div>
                       <span className="text-2xl font-bold text-primary">{coffee.price}</span>
                     </div>
-                    <div className="mt-6">
-                      <Button className="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg font-semibold transition-all duration-300">
-                        Add to Order
-                      </Button>
-                    </div>
+                    <Button 
+                      className="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg font-semibold transition-all duration-300"
+                      onClick={() => addToCart(coffee)}
+                    >
+                      Add to Order
+                    </Button>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -400,15 +423,17 @@ export default function Index() {
           >
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button 
+                asChild
                 size="lg" 
-                className="bg-gold-600 hover:bg-gold-700 text-espresso-900 text-lg px-12 py-6 rounded-full font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
+                className="bg-gold-600 hover:bg-gold-700 text-white text-lg px-12 py-6 rounded-full font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
               >
-                Order Online Now
+                <Link to="/menu">Order Online Now</Link>
               </Button>
             </motion.div>
             
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button 
+                asChild
                 size="lg" 
                 variant="outline"
                 className="border-2 border-gold-400 text-gold-100 hover:bg-gold-400 hover:text-espresso-900 text-lg px-12 py-6 rounded-full font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"

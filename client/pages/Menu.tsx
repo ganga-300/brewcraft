@@ -2,10 +2,40 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { motion } from "framer-motion";
 import { Star, Plus, Clock, Leaf } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
+import { useState } from "react";
+import { toast } from "sonner";
 
 export default function Menu() {
+  const { dispatch } = useCart();
+  const [selectedSizes, setSelectedSizes] = useState<{[key: string]: string}>({});
+
+  const addToCart = (item: any, category: 'coffee' | 'food' | 'specialty') => {
+    const size = selectedSizes[item.name] || (item.sizes ? item.sizes[0] : undefined);
+    
+    dispatch({
+      type: 'ADD_ITEM',
+      payload: {
+        id: item.name.toLowerCase().replace(/\s+/g, '-'),
+        name: item.name,
+        price: item.price,
+        image: item.image,
+        category,
+        size,
+        quantity: 1
+      }
+    });
+    
+    toast.success(`${item.name} added to cart!`);
+  };
+
+  const handleSizeChange = (itemName: string, size: string) => {
+    setSelectedSizes(prev => ({ ...prev, [itemName]: size }));
+  };
+
   const coffeeItems = [
     {
       name: "Classic Espresso",
@@ -207,8 +237,9 @@ export default function Menu() {
                     variants={fadeIn}
                     whileHover={{ y: -5 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className="h-[580px]"
                   >
-                    <Card className="border-0 bg-white/90 backdrop-blur-sm overflow-hidden h-full shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <Card className="border-0 bg-white/90 backdrop-blur-sm overflow-hidden h-full shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
                       {item.popular && (
                         <div className="absolute top-4 right-4 z-10">
                           <Badge className="bg-gold-500 hover:bg-gold-600 text-white font-semibold">
@@ -227,26 +258,37 @@ export default function Menu() {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                       </div>
                       
-                      <CardContent className="p-6">
+                      <CardContent className="p-6 flex-1 flex flex-col">
                         <div className="flex justify-between items-start mb-3">
                           <h3 className="text-xl font-bold text-espresso-900">{item.name}</h3>
                           <span className="text-2xl font-bold text-primary">{item.price}</span>
                         </div>
                         
-                        <p className="text-espresso-600 mb-4 line-height-relaxed">{item.description}</p>
+                        <p className="text-espresso-600 mb-4 line-height-relaxed flex-1">{item.description}</p>
                         
                         <div className="mb-6">
-                          <p className="text-sm font-semibold mb-3 text-espresso-800">Available sizes:</p>
-                          <div className="flex flex-wrap gap-2">
-                            {item.sizes.map((size) => (
-                              <Badge key={size} variant="outline" className="border-coffee-300 text-coffee-700">
-                                {size}
-                              </Badge>
-                            ))}
-                          </div>
+                          <p className="text-sm font-semibold mb-3 text-espresso-800">Size:</p>
+                          <Select 
+                            value={selectedSizes[item.name] || item.sizes[0]} 
+                            onValueChange={(value) => handleSizeChange(item.name, value)}
+                          >
+                            <SelectTrigger className="w-full">
+                              <SelectValue placeholder="Select size" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {item.sizes.map((size) => (
+                                <SelectItem key={size} value={size}>
+                                  {size}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
                         </div>
                         
-                        <Button className="w-full bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                        <Button 
+                          className="w-full bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                          onClick={() => addToCart(item, 'coffee')}
+                        >
                           <Plus className="w-4 h-4 mr-2" />
                           Add to Order
                         </Button>
@@ -270,8 +312,9 @@ export default function Menu() {
                     variants={fadeIn}
                     whileHover={{ y: -5 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className="h-[500px]"
                   >
-                    <Card className="border-0 bg-white/90 backdrop-blur-sm h-full shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <Card className="border-0 bg-white/90 backdrop-blur-sm h-full shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
                       <div className="relative h-48 overflow-hidden">
                         <img 
                           src={item.image} 
@@ -307,10 +350,13 @@ export default function Menu() {
                         </div>
                       </CardHeader>
                       
-                      <CardContent className="pt-0">
-                        <p className="text-espresso-600 mb-6 line-height-relaxed">{item.description}</p>
+                      <CardContent className="pt-0 flex-1 flex flex-col">
+                        <p className="text-espresso-600 mb-6 line-height-relaxed flex-1">{item.description}</p>
                         
-                        <Button className="w-full bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                        <Button 
+                          className="w-full bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                          onClick={() => addToCart(item, 'food')}
+                        >
                           <Plus className="w-4 h-4 mr-2" />
                           Add to Order
                         </Button>
@@ -334,8 +380,9 @@ export default function Menu() {
                     variants={fadeIn}
                     whileHover={{ y: -5 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className="h-[500px]"
                   >
-                    <Card className="border-0 bg-white/90 backdrop-blur-sm h-full relative shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <Card className="border-0 bg-white/90 backdrop-blur-sm h-full relative shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
                       <div className="absolute top-4 right-4 flex flex-col gap-2 z-10">
                         {item.seasonal && (
                           <Badge className="bg-orange-500 hover:bg-orange-600 text-white font-semibold">
@@ -376,10 +423,13 @@ export default function Menu() {
                         </div>
                       </CardHeader>
                       
-                      <CardContent>
-                        <p className="text-espresso-600 mb-6 line-height-relaxed">{item.description}</p>
+                      <CardContent className="flex-1 flex flex-col">
+                        <p className="text-espresso-600 mb-6 line-height-relaxed flex-1">{item.description}</p>
                         
-                        <Button className="w-full bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                        <Button 
+                          className="w-full bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                          onClick={() => addToCart(item, 'specialty')}
+                        >
                           <Plus className="w-4 h-4 mr-2" />
                           Add to Order
                         </Button>

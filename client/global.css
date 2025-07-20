@@ -8,34 +8,34 @@
    * tailwind.config.ts expects the following color variables to be expressed as HSL values.
    * A different format will require also updating the theme in tailwind.config.ts.
   */
-    :root {
-    --background: 28 100% 98%;
-    --foreground: 25 20% 15%;
+      :root {
+    --background: 30 29% 97%;
+    --foreground: 24 24% 15%;
 
-    --card: 28 100% 98%;
-    --card-foreground: 25 20% 15%;
+    --card: 30 29% 97%;
+    --card-foreground: 24 24% 15%;
 
-    --popover: 28 100% 98%;
-    --popover-foreground: 25 20% 15%;
+    --popover: 30 29% 97%;
+    --popover-foreground: 24 24% 15%;
 
-    --primary: 25 84% 49%;
-    --primary-foreground: 28 100% 98%;
+    --primary: 28 45% 35%;
+    --primary-foreground: 30 29% 97%;
 
-    --secondary: 28 50% 92%;
-    --secondary-foreground: 25 20% 15%;
+    --secondary: 30 18% 89%;
+    --secondary-foreground: 24 24% 15%;
 
-    --muted: 28 50% 92%;
-    --muted-foreground: 25 10% 45%;
+    --muted: 30 18% 89%;
+    --muted-foreground: 24 12% 45%;
 
-    --accent: 25 65% 35%;
-    --accent-foreground: 28 100% 98%;
+    --accent: 42 87% 55%;
+    --accent-foreground: 24 24% 15%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 28 30% 85%;
-    --input: 28 30% 85%;
-    --ring: 25 84% 49%;
+    --border: 30 18% 82%;
+    --input: 30 18% 82%;
+    --ring: 28 45% 35%;
 
     --radius: 0.5rem;
 
@@ -56,34 +56,34 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-    .dark {
-    --background: 25 20% 8%;
-    --foreground: 28 100% 98%;
+      .dark {
+    --background: 24 24% 8%;
+    --foreground: 30 29% 97%;
 
-    --card: 25 20% 12%;
-    --card-foreground: 28 100% 98%;
+    --card: 24 20% 12%;
+    --card-foreground: 30 29% 97%;
 
-    --popover: 25 20% 12%;
-    --popover-foreground: 28 100% 98%;
+    --popover: 24 20% 12%;
+    --popover-foreground: 30 29% 97%;
 
-    --primary: 25 84% 55%;
-    --primary-foreground: 25 20% 8%;
+    --primary: 42 87% 65%;
+    --primary-foreground: 24 24% 8%;
 
-    --secondary: 25 15% 18%;
-    --secondary-foreground: 28 100% 98%;
+    --secondary: 24 15% 18%;
+    --secondary-foreground: 30 29% 97%;
 
-    --muted: 25 15% 18%;
-    --muted-foreground: 28 20% 65%;
+    --muted: 24 15% 18%;
+    --muted-foreground: 30 20% 65%;
 
-    --accent: 25 65% 45%;
-    --accent-foreground: 28 100% 98%;
+    --accent: 28 45% 45%;
+    --accent-foreground: 30 29% 97%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 25 15% 18%;
-    --input: 25 15% 18%;
-    --ring: 25 84% 55%;
+    --border: 24 15% 18%;
+    --input: 24 15% 18%;
+    --ring: 42 87% 65%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;

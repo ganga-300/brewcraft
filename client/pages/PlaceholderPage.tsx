@@ -8,7 +8,10 @@ interface PlaceholderPageProps {
   description: string;
 }
 
-export default function PlaceholderPage({ title, description }: PlaceholderPageProps) {
+export default function PlaceholderPage({
+  title,
+  description,
+}: PlaceholderPageProps) {
   return (
     <div className="container mx-auto px-4 py-20">
       <Card className="max-w-2xl mx-auto text-center">
@@ -17,7 +20,8 @@ export default function PlaceholderPage({ title, description }: PlaceholderPageP
           <h1 className="text-4xl font-bold mb-4">{title}</h1>
           <p className="text-xl text-muted-foreground mb-8">{description}</p>
           <p className="text-muted-foreground mb-8">
-            This page is coming soon! We're brewing up something special for you.
+            This page is coming soon! We're brewing up something special for
+            you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild>
@@ -26,9 +30,7 @@ export default function PlaceholderPage({ title, description }: PlaceholderPageP
                 Back to Home
               </Link>
             </Button>
-            <Button variant="outline">
-              Stay Updated
-            </Button>
+            <Button variant="outline">Stay Updated</Button>
           </div>
         </CardContent>
       </Card>

@@ -12,10 +12,10 @@ export default {
         "2xl": "1400px",
       },
     },
-            extend: {
+    extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        serif: ['Playfair Display', 'serif'],
+        sans: ["Inter", "sans-serif"],
+        serif: ["Playfair Display", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -51,7 +51,7 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-                coffee: {
+        coffee: {
           50: "#faf8f5",
           100: "#f4f0e8",
           200: "#e8ddd0",

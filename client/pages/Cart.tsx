@@ -11,15 +11,15 @@ export default function Cart() {
   const navigate = useNavigate();
 
   const updateQuantity = (id: string, quantity: number) => {
-    dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity } });
+    dispatch({ type: "UPDATE_QUANTITY", payload: { id, quantity } });
   };
 
   const removeItem = (id: string) => {
-    dispatch({ type: 'REMOVE_ITEM', payload: id });
+    dispatch({ type: "REMOVE_ITEM", payload: id });
   };
 
   const proceedToPayment = () => {
-    navigate('/payment');
+    navigate("/payment");
   };
 
   if (state.items.length === 0) {
@@ -78,7 +78,7 @@ export default function Cart() {
                         alt={item.name}
                         className="w-20 h-20 object-cover rounded-lg"
                       />
-                      
+
                       <div className="flex-1">
                         <h3 className="text-lg font-semibold">{item.name}</h3>
                         <div className="flex gap-2 mt-1">
@@ -91,7 +91,9 @@ export default function Cart() {
                             </Badge>
                           )}
                         </div>
-                        <p className="text-lg font-bold text-primary mt-2">{item.price}</p>
+                        <p className="text-lg font-bold text-primary mt-2">
+                          {item.price}
+                        </p>
                       </div>
 
                       <div className="flex items-center gap-3">
@@ -99,18 +101,24 @@ export default function Cart() {
                           variant="outline"
                           size="icon"
                           className="h-8 w-8"
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                          onClick={() =>
+                            updateQuantity(item.id, item.quantity - 1)
+                          }
                         >
                           <Minus className="h-4 w-4" />
                         </Button>
-                        
-                        <span className="w-8 text-center font-semibold">{item.quantity}</span>
-                        
+
+                        <span className="w-8 text-center font-semibold">
+                          {item.quantity}
+                        </span>
+
                         <Button
                           variant="outline"
                           size="icon"
                           className="h-8 w-8"
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          onClick={() =>
+                            updateQuantity(item.id, item.quantity + 1)
+                          }
                         >
                           <Plus className="h-4 w-4" />
                         </Button>
@@ -149,13 +157,16 @@ export default function Cart() {
                       className="flex justify-between text-sm"
                     >
                       <span>
-                        {item.name} {item.size && `(${item.size})`} x{item.quantity}
+                        {item.name} {item.size && `(${item.size})`} x
+                        {item.quantity}
                       </span>
-                      <span>₹{parseInt(item.price.replace('₹', '')) * item.quantity}</span>
+                      <span>
+                        ₹{parseInt(item.price.replace("₹", "")) * item.quantity}
+                      </span>
                     </div>
                   ))}
                 </div>
-                
+
                 <div className="border-t pt-4">
                   <div className="flex justify-between text-sm">
                     <span>Subtotal</span>
@@ -174,19 +185,21 @@ export default function Cart() {
                 <div className="border-t pt-4">
                   <div className="flex justify-between text-lg font-bold">
                     <span>Total</span>
-                    <span>₹{state.total + Math.round(state.total * 0.05) + 40}</span>
+                    <span>
+                      ₹{state.total + Math.round(state.total * 0.05) + 40}
+                    </span>
                   </div>
                 </div>
 
                 <div className="space-y-3 pt-4">
-                  <Button 
-                    className="w-full bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white font-semibold" 
+                  <Button
+                    className="w-full bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white font-semibold"
                     size="lg"
                     onClick={proceedToPayment}
                   >
                     Proceed to Payment
                   </Button>
-                  
+
                   <Button asChild variant="outline" className="w-full">
                     <Link to="/menu">Continue Shopping</Link>
                   </Button>

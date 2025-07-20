@@ -24,7 +24,9 @@ export default function OrderConfirmation() {
           <CheckCircle className="h-24 w-24 text-green-500 mx-auto mb-6" />
         </motion.div>
 
-        <h1 className="text-4xl font-bold mb-4 text-green-600">Order Confirmed!</h1>
+        <h1 className="text-4xl font-bold mb-4 text-green-600">
+          Order Confirmed!
+        </h1>
         <p className="text-xl text-muted-foreground mb-8">
           Thank you for your order. We're preparing your delicious coffee!
         </p>
@@ -34,19 +36,25 @@ export default function OrderConfirmation() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
               <div>
                 <h3 className="font-semibold mb-2">Order Details</h3>
-                <p className="text-sm text-muted-foreground">Order #: {orderNumber}</p>
-                <p className="text-sm text-muted-foreground">Payment: Completed</p>
                 <p className="text-sm text-muted-foreground">
-                  Placed: {new Date().toLocaleString('en-IN')}
+                  Order #: {orderNumber}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Payment: Completed
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Placed: {new Date().toLocaleString("en-IN")}
                 </p>
               </div>
-              
+
               <div>
                 <h3 className="font-semibold mb-2 flex items-center gap-2">
                   <Clock className="h-4 w-4" />
                   Estimated Delivery
                 </h3>
-                <p className="text-lg font-semibold text-primary">{estimatedTime}</p>
+                <p className="text-lg font-semibold text-primary">
+                  {estimatedTime}
+                </p>
                 <p className="text-sm text-muted-foreground">
                   We'll notify you when your order is ready
                 </p>
@@ -63,8 +71,10 @@ export default function OrderConfirmation() {
                 Delivery Address
               </h3>
               <p className="text-sm text-muted-foreground">
-                Home<br />
-                123 MG Road, Bangalore<br />
+                Home
+                <br />
+                123 MG Road, Bangalore
+                <br />
                 Karnataka 560001
               </p>
             </CardContent>
@@ -77,7 +87,8 @@ export default function OrderConfirmation() {
                 Contact
               </h3>
               <p className="text-sm text-muted-foreground">
-                Phone: +91 98765 43210<br />
+                Phone: +91 98765 43210
+                <br />
                 Email: order@brewcraft.com
               </p>
             </CardContent>
@@ -85,20 +96,19 @@ export default function OrderConfirmation() {
         </div>
 
         <div className="space-y-4">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button asChild size="lg" className="w-full md:w-auto">
               <Link to="/menu">Order Again</Link>
             </Button>
           </motion.div>
-          
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button asChild variant="outline" size="lg" className="w-full md:w-auto">
+
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="w-full md:w-auto"
+            >
               <Link to="/">Back to Home</Link>
             </Button>
           </motion.div>

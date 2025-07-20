@@ -10,11 +10,17 @@ export default function Locations() {
       phone: "+91 98765 43210",
       hours: {
         weekdays: "6:00 AM - 9:00 PM",
-        saturday: "7:00 AM - 10:00 PM", 
-        sunday: "7:00 AM - 8:00 PM"
+        saturday: "7:00 AM - 10:00 PM",
+        sunday: "7:00 AM - 8:00 PM",
       },
-      amenities: ["Free WiFi", "AC Seating", "Outdoor Terrace", "Valet Parking"],
-      description: "Our flagship location in the heart of Delhi, featuring our full menu and signature Indian fusion drinks."
+      amenities: [
+        "Free WiFi",
+        "AC Seating",
+        "Outdoor Terrace",
+        "Valet Parking",
+      ],
+      description:
+        "Our flagship location in the heart of Delhi, featuring our full menu and signature Indian fusion drinks.",
     },
     {
       name: "Koregaon Park",
@@ -23,10 +29,16 @@ export default function Locations() {
       hours: {
         weekdays: "5:30 AM - 11:00 PM",
         saturday: "6:00 AM - 11:00 PM",
-        sunday: "6:00 AM - 10:00 PM"
+        sunday: "6:00 AM - 10:00 PM",
       },
-      amenities: ["Free WiFi", "Study Areas", "Group Seating", "Co-working Space"],
-      description: "Perfect for students and professionals, with extended hours and dedicated co-working spaces."
+      amenities: [
+        "Free WiFi",
+        "Study Areas",
+        "Group Seating",
+        "Co-working Space",
+      ],
+      description:
+        "Perfect for students and professionals, with extended hours and dedicated co-working spaces.",
     },
     {
       name: "Phoenix Mall",
@@ -35,10 +47,16 @@ export default function Locations() {
       hours: {
         weekdays: "10:00 AM - 10:00 PM",
         saturday: "10:00 AM - 11:00 PM",
-        sunday: "10:00 AM - 10:00 PM"
+        sunday: "10:00 AM - 10:00 PM",
       },
-      amenities: ["Free WiFi", "Mall Parking", "Kids Play Corner", "Quick Service"],
-      description: "Family-friendly location with convenient mall parking and a dedicated kids corner."
+      amenities: [
+        "Free WiFi",
+        "Mall Parking",
+        "Kids Play Corner",
+        "Quick Service",
+      ],
+      description:
+        "Family-friendly location with convenient mall parking and a dedicated kids corner.",
     },
     {
       name: "Bandra West",
@@ -47,16 +65,23 @@ export default function Locations() {
       hours: {
         weekdays: "6:00 AM - 11:00 PM",
         saturday: "6:00 AM - 12:00 AM",
-        sunday: "6:00 AM - 11:00 PM"
+        sunday: "6:00 AM - 11:00 PM",
       },
-      amenities: ["Free WiFi", "Street Parking", "Live Music", "Late Night Service"],
-      description: "Mumbai's vibrant coffee culture meets our artisan brews in this bustling Bandra location."
-    }
+      amenities: [
+        "Free WiFi",
+        "Street Parking",
+        "Live Music",
+        "Late Night Service",
+      ],
+      description:
+        "Mumbai's vibrant coffee culture meets our artisan brews in this bustling Bandra location.",
+    },
   ];
 
   const getAmenityIcon = (amenity: string) => {
     if (amenity.includes("WiFi")) return <Wifi className="h-4 w-4" />;
-    if (amenity.includes("Parking") || amenity.includes("Valet")) return <Car className="h-4 w-4" />;
+    if (amenity.includes("Parking") || amenity.includes("Valet"))
+      return <Car className="h-4 w-4" />;
     return <MapPin className="h-4 w-4" />;
   };
 
@@ -65,7 +90,8 @@ export default function Locations() {
       <div className="text-center mb-12">
         <h1 className="text-5xl font-bold mb-4">Our Locations</h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Find a BrewCraft Coffee near you across India. Each location offers our full menu with unique local touches.
+          Find a BrewCraft Coffee near you across India. Each location offers
+          our full menu with unique local touches.
         </p>
       </div>
 
@@ -80,7 +106,7 @@ export default function Locations() {
             </CardHeader>
             <CardContent className="space-y-6">
               <p className="text-muted-foreground">{location.description}</p>
-              
+
               {/* Address */}
               <div className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-muted-foreground mt-0.5" />
@@ -117,7 +143,10 @@ export default function Locations() {
                 <p className="font-medium mb-3">Amenities</p>
                 <div className="grid grid-cols-2 gap-2">
                   {location.amenities.map((amenity, amenityIndex) => (
-                    <div key={amenityIndex} className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <div
+                      key={amenityIndex}
+                      className="flex items-center gap-2 text-sm text-muted-foreground"
+                    >
                       {getAmenityIcon(amenity)}
                       <span>{amenity}</span>
                     </div>
@@ -127,9 +156,7 @@ export default function Locations() {
 
               {/* Actions */}
               <div className="flex flex-col sm:flex-row gap-3">
-                <Button className="flex-1">
-                  Get Directions
-                </Button>
+                <Button className="flex-1">Get Directions</Button>
                 <Button variant="outline" className="flex-1">
                   Order for Pickup
                 </Button>
@@ -141,13 +168,16 @@ export default function Locations() {
 
       {/* Map Section */}
       <div className="mt-16">
-        <h2 className="text-3xl font-bold text-center mb-8">Find Us Across India</h2>
+        <h2 className="text-3xl font-bold text-center mb-8">
+          Find Us Across India
+        </h2>
         <div className="bg-muted rounded-lg h-96 flex items-center justify-center">
           <div className="text-center">
             <MapPin className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
             <p className="text-lg font-medium">Interactive Map</p>
             <p className="text-muted-foreground">
-              Map integration showing our locations across Delhi, Mumbai, Pune, and Bangalore
+              Map integration showing our locations across Delhi, Mumbai, Pune,
+              and Bangalore
             </p>
           </div>
         </div>
@@ -157,7 +187,8 @@ export default function Locations() {
       <div className="mt-16 text-center bg-primary text-primary-foreground p-8 rounded-lg">
         <h3 className="text-2xl font-bold mb-4">Looking for a New Location?</h3>
         <p className="mb-6 opacity-90">
-          We're expanding across India! Let us know where you'd like to see BrewCraft Coffee next.
+          We're expanding across India! Let us know where you'd like to see
+          BrewCraft Coffee next.
         </p>
         <Button variant="secondary" size="lg">
           Suggest a Location

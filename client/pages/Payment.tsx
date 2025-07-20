@@ -2,7 +2,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/contexts/CartContext";
-import { QrCode, CheckCircle, Clock, CreditCard, Smartphone, ArrowLeft } from "lucide-react";
+import {
+  QrCode,
+  CheckCircle,
+  Clock,
+  CreditCard,
+  Smartphone,
+  ArrowLeft,
+} from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
@@ -10,7 +17,9 @@ import { useState, useEffect } from "react";
 export default function Payment() {
   const { state, dispatch } = useCart();
   const navigate = useNavigate();
-  const [paymentMethod, setPaymentMethod] = useState<'upi' | 'card' | null>(null);
+  const [paymentMethod, setPaymentMethod] = useState<"upi" | "card" | null>(
+    null,
+  );
   const [isProcessing, setIsProcessing] = useState(false);
   const [isPaid, setIsPaid] = useState(false);
 
@@ -18,22 +27,22 @@ export default function Payment() {
 
   useEffect(() => {
     if (state.items.length === 0 && !isPaid) {
-      navigate('/menu');
+      navigate("/menu");
     }
   }, [state.items, navigate, isPaid]);
 
   const processPayment = () => {
     setIsProcessing(true);
-    
+
     // Simulate payment processing
     setTimeout(() => {
       setIsProcessing(false);
       setIsPaid(true);
-      
+
       // Clear cart after successful payment
       setTimeout(() => {
-        dispatch({ type: 'CLEAR_CART' });
-        navigate('/order-confirmation');
+        dispatch({ type: "CLEAR_CART" });
+        navigate("/order-confirmation");
       }, 2000);
     }, 3000);
   };
@@ -47,9 +56,12 @@ export default function Payment() {
           transition={{ duration: 0.6 }}
         >
           <CheckCircle className="h-24 w-24 text-green-500 mx-auto mb-6" />
-          <h1 className="text-4xl font-bold mb-4 text-green-600">Payment Successful!</h1>
+          <h1 className="text-4xl font-bold mb-4 text-green-600">
+            Payment Successful!
+          </h1>
           <p className="text-xl text-muted-foreground mb-8">
-            Your order has been confirmed. You'll receive a confirmation email shortly.
+            Your order has been confirmed. You'll receive a confirmation email
+            shortly.
           </p>
           <p className="text-sm text-muted-foreground">
             Redirecting to order confirmation...
@@ -117,14 +129,16 @@ export default function Payment() {
                   whileTap={{ scale: 0.98 }}
                 >
                   <Button
-                    variant={paymentMethod === 'upi' ? 'default' : 'outline'}
+                    variant={paymentMethod === "upi" ? "default" : "outline"}
                     className="w-full h-16 justify-start gap-4"
-                    onClick={() => setPaymentMethod('upi')}
+                    onClick={() => setPaymentMethod("upi")}
                   >
                     <QrCode className="h-6 w-6" />
                     <div className="text-left">
                       <div className="font-semibold">UPI Payment</div>
-                      <div className="text-sm opacity-70">Pay using UPI QR Code</div>
+                      <div className="text-sm opacity-70">
+                        Pay using UPI QR Code
+                      </div>
                     </div>
                   </Button>
                 </motion.div>
@@ -134,14 +148,16 @@ export default function Payment() {
                   whileTap={{ scale: 0.98 }}
                 >
                   <Button
-                    variant={paymentMethod === 'card' ? 'default' : 'outline'}
+                    variant={paymentMethod === "card" ? "default" : "outline"}
                     className="w-full h-16 justify-start gap-4"
-                    onClick={() => setPaymentMethod('card')}
+                    onClick={() => setPaymentMethod("card")}
                   >
                     <CreditCard className="h-6 w-6" />
                     <div className="text-left">
                       <div className="font-semibold">Card Payment</div>
-                      <div className="text-sm opacity-70">Credit/Debit Card</div>
+                      <div className="text-sm opacity-70">
+                        Credit/Debit Card
+                      </div>
                     </div>
                   </Button>
                 </motion.div>
@@ -149,7 +165,7 @@ export default function Payment() {
             </Card>
 
             {/* UPI QR Code */}
-            {paymentMethod === 'upi' && (
+            {paymentMethod === "upi" && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -167,12 +183,16 @@ export default function Payment() {
                       <div className="w-48 h-48 bg-pattern-dots flex items-center justify-center border">
                         <div className="text-center">
                           <QrCode className="h-24 w-24 mx-auto mb-2 text-muted-foreground" />
-                          <p className="text-sm text-muted-foreground">QR Code</p>
-                          <p className="text-xs text-muted-foreground">₹{totalAmount}</p>
+                          <p className="text-sm text-muted-foreground">
+                            QR Code
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            ₹{totalAmount}
+                          </p>
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="space-y-2 text-sm text-muted-foreground">
                       <p>1. Open any UPI app (GPay, PhonePe, Paytm)</p>
                       <p>2. Scan the QR code above</p>
@@ -180,7 +200,7 @@ export default function Payment() {
                       <p>4. Complete the payment</p>
                     </div>
 
-                    <Button 
+                    <Button
                       className="w-full mt-6 bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700"
                       size="lg"
                       onClick={processPayment}
@@ -193,7 +213,7 @@ export default function Payment() {
             )}
 
             {/* Card Payment Form */}
-            {paymentMethod === 'card' && (
+            {paymentMethod === "card" && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -216,10 +236,12 @@ export default function Payment() {
                         maxLength={19}
                       />
                     </div>
-                    
+
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="text-sm font-medium">Expiry Date</label>
+                        <label className="text-sm font-medium">
+                          Expiry Date
+                        </label>
                         <input
                           type="text"
                           placeholder="MM/YY"
@@ -239,7 +261,9 @@ export default function Payment() {
                     </div>
 
                     <div>
-                      <label className="text-sm font-medium">Cardholder Name</label>
+                      <label className="text-sm font-medium">
+                        Cardholder Name
+                      </label>
                       <input
                         type="text"
                         placeholder="John Doe"
@@ -247,7 +271,7 @@ export default function Payment() {
                       />
                     </div>
 
-                    <Button 
+                    <Button
                       className="w-full bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700"
                       size="lg"
                       onClick={processPayment}
@@ -296,12 +320,12 @@ export default function Payment() {
                         </div>
                       </div>
                       <span className="font-semibold">
-                        ₹{parseInt(item.price.replace('₹', '')) * item.quantity}
+                        ₹{parseInt(item.price.replace("₹", "")) * item.quantity}
                       </span>
                     </div>
                   ))}
                 </div>
-                
+
                 <div className="border-t pt-4 space-y-2">
                   <div className="flex justify-between text-sm">
                     <span>Subtotal</span>

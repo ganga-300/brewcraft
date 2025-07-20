@@ -2,7 +2,17 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Coffee, MapPin, Phone, Mail, Menu, Instagram, Facebook, Twitter, ShoppingCart } from "lucide-react";
+import {
+  Coffee,
+  MapPin,
+  Phone,
+  Mail,
+  Menu,
+  Instagram,
+  Facebook,
+  Twitter,
+  ShoppingCart,
+} from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useCart } from "@/contexts/CartContext";
@@ -21,7 +31,7 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <motion.header 
+      <motion.header
         className="bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/90 sticky top-0 z-50 w-full border-b border-border/40 shadow-sm"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -47,7 +57,7 @@ export default function Layout({ children }: LayoutProps) {
               { path: "/", label: "Home" },
               { path: "/menu", label: "Menu" },
               { path: "/locations", label: "Locations" },
-              { path: "/about", label: "About" }
+              { path: "/about", label: "About" },
             ].map((item) => (
               <Link
                 key={item.path}
@@ -57,9 +67,11 @@ export default function Layout({ children }: LayoutProps) {
                 }`}
               >
                 {item.label}
-                <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full ${
-                  isActive(item.path) ? "w-full" : ""
-                }`}></span>
+                <span
+                  className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full ${
+                    isActive(item.path) ? "w-full" : ""
+                  }`}
+                ></span>
               </Link>
             ))}
           </nav>
@@ -71,10 +83,11 @@ export default function Layout({ children }: LayoutProps) {
                 <Link to="/cart">
                   <ShoppingCart className="h-5 w-5" />
                   {state.items.length > 0 && (
-                    <Badge 
-                      className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center bg-primary text-primary-foreground text-xs"
-                    >
-                      {state.items.reduce((total, item) => total + item.quantity, 0)}
+                    <Badge className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center bg-primary text-primary-foreground text-xs">
+                      {state.items.reduce(
+                        (total, item) => total + item.quantity,
+                        0,
+                      )}
                     </Badge>
                   )}
                 </Link>
@@ -83,7 +96,10 @@ export default function Layout({ children }: LayoutProps) {
 
             {/* Order Now Button */}
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button asChild className="bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white hidden sm:flex font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+              <Button
+                asChild
+                className="bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white hidden sm:flex font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+              >
                 <Link to="/menu">Order Now</Link>
               </Button>
             </motion.div>
@@ -96,28 +112,33 @@ export default function Layout({ children }: LayoutProps) {
                   <span className="sr-only">Toggle menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-background/95 backdrop-blur-md">
+              <SheetContent
+                side="right"
+                className="w-[300px] sm:w-[400px] bg-background/95 backdrop-blur-md"
+              >
                 <nav className="flex flex-col space-y-8 mt-8">
                   {[
                     { path: "/", label: "Home" },
                     { path: "/menu", label: "Menu" },
                     { path: "/locations", label: "Locations" },
-                    { path: "/about", label: "About" }
+                    { path: "/about", label: "About" },
                   ].map((item) => (
                     <Link
                       key={item.path}
                       to={item.path}
                       className={`text-lg font-medium transition-colors hover:text-primary ${
-                        isActive(item.path) ? "text-primary" : "text-muted-foreground"
+                        isActive(item.path)
+                          ? "text-primary"
+                          : "text-muted-foreground"
                       }`}
                       onClick={() => setIsOpen(false)}
                     >
                       {item.label}
                     </Link>
                   ))}
-                  <Button 
+                  <Button
                     asChild
-                    className="bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white mt-6 font-semibold" 
+                    className="bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white mt-6 font-semibold"
                     onClick={() => setIsOpen(false)}
                   >
                     <Link to="/menu">Order Now</Link>
@@ -140,19 +161,22 @@ export default function Layout({ children }: LayoutProps) {
             <div className="space-y-6">
               <div className="flex items-center space-x-3">
                 <Coffee className="h-8 w-8 text-gold-400" />
-                <span className="text-2xl font-bold text-gold-400 font-serif">BrewCraft</span>
+                <span className="text-2xl font-bold text-gold-400 font-serif">
+                  BrewCraft
+                </span>
               </div>
               <p className="text-coffee-200 leading-relaxed">
-                Crafting the perfect cup of coffee since 2010. Experience the finest 
-                handpicked beans and artisanal brewing methods that awaken your senses.
+                Crafting the perfect cup of coffee since 2010. Experience the
+                finest handpicked beans and artisanal brewing methods that
+                awaken your senses.
               </p>
-              
+
               {/* Social Media */}
               <div className="flex space-x-4">
                 {[
                   { icon: Facebook, label: "Facebook" },
                   { icon: Instagram, label: "Instagram" },
-                  { icon: Twitter, label: "Twitter" }
+                  { icon: Twitter, label: "Twitter" },
                 ].map((social, index) => (
                   <motion.a
                     key={index}
@@ -170,18 +194,20 @@ export default function Layout({ children }: LayoutProps) {
 
             {/* Quick Links */}
             <div>
-              <h3 className="font-bold mb-6 text-gold-400 text-lg">Quick Links</h3>
+              <h3 className="font-bold mb-6 text-gold-400 text-lg">
+                Quick Links
+              </h3>
               <ul className="space-y-4 text-coffee-200">
                 {[
                   { path: "/menu", label: "Our Menu" },
                   { path: "/locations", label: "Store Locations" },
                   { path: "/about", label: "About Us" },
                   { path: "#", label: "Gift Cards" },
-                  { path: "#", label: "Rewards Program" }
+                  { path: "#", label: "Rewards Program" },
                 ].map((link, index) => (
                   <li key={index}>
-                    <Link 
-                      to={link.path} 
+                    <Link
+                      to={link.path}
                       className="hover:text-gold-400 transition-colors duration-300 flex items-center group"
                     >
                       <span className="w-0 group-hover:w-2 h-0.5 bg-gold-400 transition-all duration-300 mr-0 group-hover:mr-2"></span>
@@ -228,14 +254,18 @@ export default function Layout({ children }: LayoutProps) {
                   <span>7:00 AM - 8:00 PM</span>
                 </li>
               </ul>
-              
+
               {/* Newsletter */}
               <div className="mt-8 p-4 bg-gold-600/10 rounded-lg border border-gold-600/20">
-                <h4 className="font-semibold mb-2 text-gold-400">Stay Updated</h4>
-                <p className="text-sm text-coffee-200 mb-3">Get the latest news and exclusive offers</p>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
+                <h4 className="font-semibold mb-2 text-gold-400">
+                  Stay Updated
+                </h4>
+                <p className="text-sm text-coffee-200 mb-3">
+                  Get the latest news and exclusive offers
+                </p>
+                <Button
+                  variant="outline"
+                  size="sm"
                   className="w-full border-gold-400 text-gold-400 hover:bg-gold-400 hover:text-espresso-900"
                 >
                   Subscribe
@@ -247,8 +277,18 @@ export default function Layout({ children }: LayoutProps) {
           <div className="border-t border-gold-600/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-coffee-300">
             <p>&copy; 2024 BrewCraft Coffee. All rights reserved.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="hover:text-gold-400 transition-colors duration-300">Privacy Policy</a>
-              <a href="#" className="hover:text-gold-400 transition-colors duration-300">Terms of Service</a>
+              <a
+                href="#"
+                className="hover:text-gold-400 transition-colors duration-300"
+              >
+                Privacy Policy
+              </a>
+              <a
+                href="#"
+                className="hover:text-gold-400 transition-colors duration-300"
+              >
+                Terms of Service
+              </a>
             </div>
           </div>
         </div>

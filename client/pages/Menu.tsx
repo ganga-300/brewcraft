@@ -2,7 +2,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { motion } from "framer-motion";
 import { Star, Plus, Clock, Leaf } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
@@ -11,29 +17,32 @@ import { toast } from "sonner";
 
 export default function Menu() {
   const { dispatch } = useCart();
-  const [selectedSizes, setSelectedSizes] = useState<{[key: string]: string}>({});
+  const [selectedSizes, setSelectedSizes] = useState<{ [key: string]: string }>(
+    {},
+  );
 
-  const addToCart = (item: any, category: 'coffee' | 'food' | 'specialty') => {
-    const size = selectedSizes[item.name] || (item.sizes ? item.sizes[0] : undefined);
-    
+  const addToCart = (item: any, category: "coffee" | "food" | "specialty") => {
+    const size =
+      selectedSizes[item.name] || (item.sizes ? item.sizes[0] : undefined);
+
     dispatch({
-      type: 'ADD_ITEM',
+      type: "ADD_ITEM",
       payload: {
-        id: item.name.toLowerCase().replace(/\s+/g, '-'),
+        id: item.name.toLowerCase().replace(/\s+/g, "-"),
         name: item.name,
         price: item.price,
         image: item.image,
         category,
         size,
-        quantity: 1
-      }
+        quantity: 1,
+      },
     });
-    
+
     toast.success(`${item.name} added to cart!`);
   };
 
   const handleSizeChange = (itemName: string, size: string) => {
-    setSelectedSizes(prev => ({ ...prev, [itemName]: size }));
+    setSelectedSizes((prev) => ({ ...prev, [itemName]: size }));
   };
 
   const coffeeItems = [
@@ -43,48 +52,59 @@ export default function Menu() {
       price: "₹200",
       sizes: ["Single", "Double"],
       popular: false,
-      image: "https://images.pexels.com/photos/5192030/pexels-photo-5192030.jpeg"
+      image:
+        "https://images.pexels.com/photos/5192030/pexels-photo-5192030.jpeg",
     },
     {
       name: "Americano",
-      description: "Smooth espresso with hot water, perfect balance of strength and flavor",
+      description:
+        "Smooth espresso with hot water, perfect balance of strength and flavor",
       price: "₹260",
       sizes: ["12oz", "16oz", "20oz"],
       popular: false,
-      image: "https://images.pexels.com/photos/6205530/pexels-photo-6205530.jpeg"
+      image:
+        "https://images.pexels.com/photos/6205530/pexels-photo-6205530.jpeg",
     },
     {
       name: "Cappuccino",
-      description: "Traditional Italian espresso with steamed milk and rich foam artistry",
+      description:
+        "Traditional Italian espresso with steamed milk and rich foam artistry",
       price: "₹360",
       sizes: ["8oz", "12oz"],
       popular: true,
-      image: "https://images.pexels.com/photos/14745651/pexels-photo-14745651.jpeg"
+      image:
+        "https://images.pexels.com/photos/14745651/pexels-photo-14745651.jpeg",
     },
     {
       name: "Signature Latte",
-      description: "Creamy steamed milk with espresso, topped with delicate latte art",
+      description:
+        "Creamy steamed milk with espresso, topped with delicate latte art",
       price: "₹380",
       sizes: ["12oz", "16oz", "20oz"],
       popular: true,
-      image: "https://images.pexels.com/photos/6205530/pexels-photo-6205530.jpeg"
+      image:
+        "https://images.pexels.com/photos/6205530/pexels-photo-6205530.jpeg",
     },
     {
       name: "Chocolate Mocha",
-      description: "Decadent blend of espresso, rich chocolate, and steamed milk",
+      description:
+        "Decadent blend of espresso, rich chocolate, and steamed milk",
       price: "₹420",
       sizes: ["12oz", "16oz", "20oz"],
       popular: false,
-      image: "https://images.pexels.com/photos/5192030/pexels-photo-5192030.jpeg"
+      image:
+        "https://images.pexels.com/photos/5192030/pexels-photo-5192030.jpeg",
     },
     {
       name: "Caramel Macchiato",
-      description: "Vanilla syrup, steamed milk, espresso, and golden caramel drizzle",
+      description:
+        "Vanilla syrup, steamed milk, espresso, and golden caramel drizzle",
       price: "₹440",
       sizes: ["12oz", "16oz", "20oz"],
       popular: true,
-      image: "https://images.pexels.com/photos/14745651/pexels-photo-14745651.jpeg"
-    }
+      image:
+        "https://images.pexels.com/photos/14745651/pexels-photo-14745651.jpeg",
+    },
   ];
 
   const foodItems = [
@@ -94,7 +114,8 @@ export default function Menu() {
       price: "₹280",
       category: "Pastries",
       prepTime: "2 min",
-      image: "https://images.pexels.com/photos/14111071/pexels-photo-14111071.jpeg"
+      image:
+        "https://images.pexels.com/photos/14111071/pexels-photo-14111071.jpeg",
     },
     {
       name: "Wild Blueberry Muffin",
@@ -102,23 +123,28 @@ export default function Menu() {
       price: "₹260",
       category: "Pastries",
       prepTime: "Ready",
-      image: "https://images.pexels.com/photos/14111071/pexels-photo-14111071.jpeg"
+      image:
+        "https://images.pexels.com/photos/14111071/pexels-photo-14111071.jpeg",
     },
     {
       name: "Artisan Avocado Toast",
-      description: "Multigrain sourdough with smashed avocado, lime, and sea salt",
+      description:
+        "Multigrain sourdough with smashed avocado, lime, and sea salt",
       price: "₹680",
       category: "Breakfast",
       prepTime: "5 min",
-      image: "https://images.pexels.com/photos/6327126/pexels-photo-6327126.jpeg"
+      image:
+        "https://images.pexels.com/photos/6327126/pexels-photo-6327126.jpeg",
     },
     {
       name: "Breakfast Sandwich",
-      description: "Farm-fresh egg, aged cheese, and choice of meat on English muffin",
+      description:
+        "Farm-fresh egg, aged cheese, and choice of meat on English muffin",
       price: "₹580",
       category: "Breakfast",
       prepTime: "8 min",
-      image: "https://images.pexels.com/photos/6327126/pexels-photo-6327126.jpeg"
+      image:
+        "https://images.pexels.com/photos/6327126/pexels-photo-6327126.jpeg",
     },
     {
       name: "Greek Yogurt Parfait",
@@ -126,7 +152,8 @@ export default function Menu() {
       price: "₹540",
       category: "Healthy",
       prepTime: "Ready",
-      image: "https://images.pexels.com/photos/6327126/pexels-photo-6327126.jpeg"
+      image:
+        "https://images.pexels.com/photos/6327126/pexels-photo-6327126.jpeg",
     },
     {
       name: "Power Quinoa Bowl",
@@ -134,18 +161,21 @@ export default function Menu() {
       price: "₹920",
       category: "Healthy",
       prepTime: "7 min",
-      image: "https://images.pexels.com/photos/6327126/pexels-photo-6327126.jpeg"
-    }
+      image:
+        "https://images.pexels.com/photos/6327126/pexels-photo-6327126.jpeg",
+    },
   ];
 
   const specialties = [
     {
       name: "Nitro Cold Brew",
-      description: "Smooth cold brew infused with nitrogen for a creamy, velvety texture",
+      description:
+        "Smooth cold brew infused with nitrogen for a creamy, velvety texture",
       price: "₹380",
       seasonal: false,
       new: true,
-      image: "https://images.pexels.com/photos/5741238/pexels-photo-5741238.jpeg"
+      image:
+        "https://images.pexels.com/photos/5741238/pexels-photo-5741238.jpeg",
     },
     {
       name: "Iced Matcha Latte",
@@ -153,7 +183,8 @@ export default function Menu() {
       price: "₹420",
       seasonal: false,
       organic: true,
-      image: "https://images.pexels.com/photos/32158135/pexels-photo-32158135.jpeg"
+      image:
+        "https://images.pexels.com/photos/32158135/pexels-photo-32158135.jpeg",
     },
     {
       name: "Pumpkin Spice Latte",
@@ -161,7 +192,8 @@ export default function Menu() {
       price: "₹460",
       seasonal: true,
       limited: true,
-      image: "https://images.pexels.com/photos/5741238/pexels-photo-5741238.jpeg"
+      image:
+        "https://images.pexels.com/photos/5741238/pexels-photo-5741238.jpeg",
     },
     {
       name: "Honey Lavender Latte",
@@ -169,29 +201,30 @@ export default function Menu() {
       price: "₹440",
       seasonal: false,
       signature: true,
-      image: "https://images.pexels.com/photos/32158135/pexels-photo-32158135.jpeg"
-    }
+      image:
+        "https://images.pexels.com/photos/32158135/pexels-photo-32158135.jpeg",
+    },
   ];
 
   const fadeIn = {
     initial: { opacity: 0, y: 30 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
+    transition: { duration: 0.6 },
   };
 
   const staggerContainer = {
     animate: {
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-coffee-50 to-white">
       <div className="container mx-auto px-4 py-16">
         {/* Header */}
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -201,7 +234,7 @@ export default function Menu() {
             Our <span className="font-serif">Menu</span>
           </h1>
           <p className="text-xl text-espresso-700 max-w-3xl mx-auto leading-relaxed">
-            Discover our carefully crafted beverages and fresh food options, 
+            Discover our carefully crafted beverages and fresh food options,
             made with the finest ingredients and artisanal techniques
           </p>
         </motion.div>
@@ -213,27 +246,36 @@ export default function Menu() {
         >
           <Tabs defaultValue="coffee" className="w-full">
             <TabsList className="grid w-full grid-cols-3 max-w-lg mx-auto mb-12 h-14 bg-white/80 backdrop-blur-sm border border-coffee-200">
-              <TabsTrigger value="coffee" className="text-lg font-semibold data-[state=active]:bg-primary data-[state=active]:text-white">
+              <TabsTrigger
+                value="coffee"
+                className="text-lg font-semibold data-[state=active]:bg-primary data-[state=active]:text-white"
+              >
                 Coffee
               </TabsTrigger>
-              <TabsTrigger value="food" className="text-lg font-semibold data-[state=active]:bg-primary data-[state=active]:text-white">
+              <TabsTrigger
+                value="food"
+                className="text-lg font-semibold data-[state=active]:bg-primary data-[state=active]:text-white"
+              >
                 Food
               </TabsTrigger>
-              <TabsTrigger value="specialties" className="text-lg font-semibold data-[state=active]:bg-primary data-[state=active]:text-white">
+              <TabsTrigger
+                value="specialties"
+                className="text-lg font-semibold data-[state=active]:bg-primary data-[state=active]:text-white"
+              >
                 Specialties
               </TabsTrigger>
             </TabsList>
 
             <TabsContent value="coffee">
-              <motion.div 
+              <motion.div
                 className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"
                 variants={staggerContainer}
                 initial="initial"
                 animate="animate"
               >
                 {coffeeItems.map((item, index) => (
-                  <motion.div 
-                    key={index} 
+                  <motion.div
+                    key={index}
                     variants={fadeIn}
                     whileHover={{ y: -5 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -248,29 +290,39 @@ export default function Menu() {
                           </Badge>
                         </div>
                       )}
-                      
+
                       <div className="relative h-48 overflow-hidden">
-                        <img 
-                          src={item.image} 
+                        <img
+                          src={item.image}
                           alt={item.name}
                           className="w-full h-full object-cover transition-transform duration-300"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                       </div>
-                      
+
                       <CardContent className="p-6 flex-1 flex flex-col">
                         <div className="flex justify-between items-start mb-3">
-                          <h3 className="text-xl font-bold text-espresso-900">{item.name}</h3>
-                          <span className="text-2xl font-bold text-primary">{item.price}</span>
+                          <h3 className="text-xl font-bold text-espresso-900">
+                            {item.name}
+                          </h3>
+                          <span className="text-2xl font-bold text-primary">
+                            {item.price}
+                          </span>
                         </div>
-                        
-                        <p className="text-espresso-600 mb-4 line-height-relaxed flex-1">{item.description}</p>
-                        
+
+                        <p className="text-espresso-600 mb-4 line-height-relaxed flex-1">
+                          {item.description}
+                        </p>
+
                         <div className="mb-6">
-                          <p className="text-sm font-semibold mb-3 text-espresso-800">Size:</p>
-                          <Select 
-                            value={selectedSizes[item.name] || item.sizes[0]} 
-                            onValueChange={(value) => handleSizeChange(item.name, value)}
+                          <p className="text-sm font-semibold mb-3 text-espresso-800">
+                            Size:
+                          </p>
+                          <Select
+                            value={selectedSizes[item.name] || item.sizes[0]}
+                            onValueChange={(value) =>
+                              handleSizeChange(item.name, value)
+                            }
                           >
                             <SelectTrigger className="w-full">
                               <SelectValue placeholder="Select size" />
@@ -284,10 +336,10 @@ export default function Menu() {
                             </SelectContent>
                           </Select>
                         </div>
-                        
-                        <Button 
+
+                        <Button
                           className="w-full bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                          onClick={() => addToCart(item, 'coffee')}
+                          onClick={() => addToCart(item, "coffee")}
                         >
                           <Plus className="w-4 h-4 mr-2" />
                           Add to Order
@@ -300,15 +352,15 @@ export default function Menu() {
             </TabsContent>
 
             <TabsContent value="food">
-              <motion.div 
+              <motion.div
                 className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"
                 variants={staggerContainer}
                 initial="initial"
                 animate="animate"
               >
                 {foodItems.map((item, index) => (
-                  <motion.div 
-                    key={index} 
+                  <motion.div
+                    key={index}
                     variants={fadeIn}
                     whileHover={{ y: -5 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -316,46 +368,55 @@ export default function Menu() {
                   >
                     <Card className="border-0 bg-white/90 backdrop-blur-sm h-full shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
                       <div className="relative h-48 overflow-hidden">
-                        <img 
-                          src={item.image} 
+                        <img
+                          src={item.image}
                           alt={item.name}
                           className="w-full h-full object-cover transition-transform duration-300"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                       </div>
-                      
+
                       <CardHeader className="pb-4">
                         <div className="flex justify-between items-start mb-2">
-                          <CardTitle className="text-xl font-bold text-espresso-900">{item.name}</CardTitle>
-                          <span className="text-2xl font-bold text-primary">{item.price}</span>
+                          <CardTitle className="text-xl font-bold text-espresso-900">
+                            {item.name}
+                          </CardTitle>
+                          <span className="text-2xl font-bold text-primary">
+                            {item.price}
+                          </span>
                         </div>
-                        
+
                         <div className="flex gap-2">
-                          <Badge 
-                            variant="secondary" 
+                          <Badge
+                            variant="secondary"
                             className={`${
-                              item.category === 'Healthy' 
-                                ? 'bg-green-100 text-green-800' 
-                                : item.category === 'Breakfast'
-                                ? 'bg-orange-100 text-orange-800'
-                                : 'bg-coffee-100 text-coffee-800'
+                              item.category === "Healthy"
+                                ? "bg-green-100 text-green-800"
+                                : item.category === "Breakfast"
+                                  ? "bg-orange-100 text-orange-800"
+                                  : "bg-coffee-100 text-coffee-800"
                             }`}
                           >
                             {item.category}
                           </Badge>
-                          <Badge variant="outline" className="border-espresso-300 text-espresso-600">
+                          <Badge
+                            variant="outline"
+                            className="border-espresso-300 text-espresso-600"
+                          >
                             <Clock className="w-3 h-3 mr-1" />
                             {item.prepTime}
                           </Badge>
                         </div>
                       </CardHeader>
-                      
+
                       <CardContent className="pt-0 flex-1 flex flex-col">
-                        <p className="text-espresso-600 mb-6 line-height-relaxed flex-1">{item.description}</p>
-                        
-                        <Button 
+                        <p className="text-espresso-600 mb-6 line-height-relaxed flex-1">
+                          {item.description}
+                        </p>
+
+                        <Button
                           className="w-full bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                          onClick={() => addToCart(item, 'food')}
+                          onClick={() => addToCart(item, "food")}
                         >
                           <Plus className="w-4 h-4 mr-2" />
                           Add to Order
@@ -368,15 +429,15 @@ export default function Menu() {
             </TabsContent>
 
             <TabsContent value="specialties">
-              <motion.div 
+              <motion.div
                 className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"
                 variants={staggerContainer}
                 initial="initial"
                 animate="animate"
               >
                 {specialties.map((item, index) => (
-                  <motion.div 
-                    key={index} 
+                  <motion.div
+                    key={index}
                     variants={fadeIn}
                     whileHover={{ y: -5 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -406,29 +467,35 @@ export default function Menu() {
                           </Badge>
                         )}
                       </div>
-                      
+
                       <div className="relative h-48 overflow-hidden">
-                        <img 
-                          src={item.image} 
+                        <img
+                          src={item.image}
                           alt={item.name}
                           className="w-full h-full object-cover transition-transform duration-300"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                       </div>
-                      
+
                       <CardHeader>
                         <div className="flex justify-between items-start">
-                          <CardTitle className="text-xl font-bold text-espresso-900 pr-4">{item.name}</CardTitle>
-                          <span className="text-2xl font-bold text-primary">{item.price}</span>
+                          <CardTitle className="text-xl font-bold text-espresso-900 pr-4">
+                            {item.name}
+                          </CardTitle>
+                          <span className="text-2xl font-bold text-primary">
+                            {item.price}
+                          </span>
                         </div>
                       </CardHeader>
-                      
+
                       <CardContent className="flex-1 flex flex-col">
-                        <p className="text-espresso-600 mb-6 line-height-relaxed flex-1">{item.description}</p>
-                        
-                        <Button 
+                        <p className="text-espresso-600 mb-6 line-height-relaxed flex-1">
+                          {item.description}
+                        </p>
+
+                        <Button
                           className="w-full bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                          onClick={() => addToCart(item, 'specialty')}
+                          onClick={() => addToCart(item, "specialty")}
                         >
                           <Plus className="w-4 h-4 mr-2" />
                           Add to Order
@@ -443,21 +510,23 @@ export default function Menu() {
         </motion.div>
 
         {/* Call to Action */}
-        <motion.div 
+        <motion.div
           className="mt-20 text-center bg-gradient-to-br from-espresso-900 to-coffee-900 text-white p-12 rounded-2xl shadow-2xl"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-3xl font-bold mb-4 text-gold-400">Can't Decide What to Order?</h3>
+          <h3 className="text-3xl font-bold mb-4 text-gold-400">
+            Can't Decide What to Order?
+          </h3>
           <p className="text-coffee-100 mb-8 text-lg leading-relaxed max-w-2xl mx-auto">
-            Our expert baristas are here to help you find your perfect cup. 
-            Let us recommend something based on your taste preferences and mood.
+            Our expert baristas are here to help you find your perfect cup. Let
+            us recommend something based on your taste preferences and mood.
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-gold-600 hover:bg-gold-700 text-espresso-900 font-bold px-8 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300"
             >
               Talk to a Barista

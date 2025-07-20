@@ -5,58 +5,58 @@ import { MapPin, Clock, Phone, Wifi, Car } from "lucide-react";
 export default function Locations() {
   const locations = [
     {
-      name: "Downtown Flagship",
-      address: "123 Main Street, Downtown",
-      phone: "(555) 123-4567",
+      name: "Connaught Place Flagship",
+      address: "Block A, Connaught Place, New Delhi - 110001",
+      phone: "+91 98765 43210",
       hours: {
         weekdays: "6:00 AM - 9:00 PM",
         saturday: "7:00 AM - 10:00 PM", 
         sunday: "7:00 AM - 8:00 PM"
       },
-      amenities: ["Free WiFi", "Parking Available", "Drive-thru", "Outdoor Seating"],
-      description: "Our flagship location in the heart of downtown, featuring our full menu and specialty drinks."
+      amenities: ["Free WiFi", "AC Seating", "Outdoor Terrace", "Valet Parking"],
+      description: "Our flagship location in the heart of Delhi, featuring our full menu and signature Indian fusion drinks."
     },
     {
-      name: "University District",
-      address: "456 College Ave, University District",
-      phone: "(555) 234-5678",
+      name: "Koregaon Park",
+      address: "Lane 5, Koregaon Park, Pune - 411001",
+      phone: "+91 98765 43211",
       hours: {
         weekdays: "5:30 AM - 11:00 PM",
         saturday: "6:00 AM - 11:00 PM",
         sunday: "6:00 AM - 10:00 PM"
       },
-      amenities: ["Free WiFi", "Study Areas", "Group Seating", "24/7 Study Room"],
-      description: "Perfect for students and night owls, with extended hours and dedicated study spaces."
+      amenities: ["Free WiFi", "Study Areas", "Group Seating", "Co-working Space"],
+      description: "Perfect for students and professionals, with extended hours and dedicated co-working spaces."
     },
     {
-      name: "Suburban Plaza",
-      address: "789 Shopping Center Dr, Suburbia",
-      phone: "(555) 345-6789",
+      name: "Phoenix Mall",
+      address: "Phoenix MarketCity, Whitefield, Bangalore - 560066",
+      phone: "+91 98765 43212",
       hours: {
-        weekdays: "6:30 AM - 8:00 PM",
-        saturday: "7:00 AM - 9:00 PM",
-        sunday: "7:00 AM - 7:00 PM"
+        weekdays: "10:00 AM - 10:00 PM",
+        saturday: "10:00 AM - 11:00 PM",
+        sunday: "10:00 AM - 10:00 PM"
       },
-      amenities: ["Free WiFi", "Ample Parking", "Drive-thru", "Kids Play Area"],
-      description: "Family-friendly location with convenient parking and a dedicated kids area."
+      amenities: ["Free WiFi", "Mall Parking", "Kids Play Corner", "Quick Service"],
+      description: "Family-friendly location with convenient mall parking and a dedicated kids corner."
     },
     {
-      name: "Airport Terminal",
-      address: "Terminal B, City Airport",
-      phone: "(555) 456-7890",
+      name: "Bandra West",
+      address: "Linking Road, Bandra West, Mumbai - 400050",
+      phone: "+91 98765 43213",
       hours: {
-        weekdays: "4:00 AM - 11:00 PM",
-        saturday: "4:00 AM - 11:00 PM",
-        sunday: "4:00 AM - 11:00 PM"
+        weekdays: "6:00 AM - 11:00 PM",
+        saturday: "6:00 AM - 12:00 AM",
+        sunday: "6:00 AM - 11:00 PM"
       },
-      amenities: ["Grab & Go", "Mobile Ordering", "Express Service"],
-      description: "Quick service for travelers with mobile ordering and express pickup options."
+      amenities: ["Free WiFi", "Street Parking", "Live Music", "Late Night Service"],
+      description: "Mumbai's vibrant coffee culture meets our artisan brews in this bustling Bandra location."
     }
   ];
 
   const getAmenityIcon = (amenity: string) => {
     if (amenity.includes("WiFi")) return <Wifi className="h-4 w-4" />;
-    if (amenity.includes("Parking") || amenity.includes("Drive-thru")) return <Car className="h-4 w-4" />;
+    if (amenity.includes("Parking") || amenity.includes("Valet")) return <Car className="h-4 w-4" />;
     return <MapPin className="h-4 w-4" />;
   };
 
@@ -65,7 +65,7 @@ export default function Locations() {
       <div className="text-center mb-12">
         <h1 className="text-5xl font-bold mb-4">Our Locations</h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Find a BrewCraft Coffee near you. Each location offers our full menu with unique local touches.
+          Find a BrewCraft Coffee near you across India. Each location offers our full menu with unique local touches.
         </p>
       </div>
 
@@ -141,13 +141,13 @@ export default function Locations() {
 
       {/* Map Section */}
       <div className="mt-16">
-        <h2 className="text-3xl font-bold text-center mb-8">Find Us on the Map</h2>
+        <h2 className="text-3xl font-bold text-center mb-8">Find Us Across India</h2>
         <div className="bg-muted rounded-lg h-96 flex items-center justify-center">
           <div className="text-center">
             <MapPin className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
             <p className="text-lg font-medium">Interactive Map</p>
             <p className="text-muted-foreground">
-              Map integration would be displayed here in a real application
+              Map integration showing our locations across Delhi, Mumbai, Pune, and Bangalore
             </p>
           </div>
         </div>
@@ -157,7 +157,7 @@ export default function Locations() {
       <div className="mt-16 text-center bg-primary text-primary-foreground p-8 rounded-lg">
         <h3 className="text-2xl font-bold mb-4">Looking for a New Location?</h3>
         <p className="mb-6 opacity-90">
-          We're always expanding! Let us know where you'd like to see BrewCraft Coffee next.
+          We're expanding across India! Let us know where you'd like to see BrewCraft Coffee next.
         </p>
         <Button variant="secondary" size="lg">
           Suggest a Location

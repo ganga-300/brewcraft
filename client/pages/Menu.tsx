@@ -6,11 +6,11 @@ import { motion } from "framer-motion";
 import { Star, Plus, Clock, Leaf } from "lucide-react";
 
 export default function Menu() {
-  const coffeeItems = [
+    const coffeeItems = [
     {
       name: "Classic Espresso",
       description: "Rich and bold single shot with intense aroma and full body",
-      price: "$2.50",
+      price: "₹200",
       sizes: ["Single", "Double"],
       popular: false,
       image: "https://images.pexels.com/photos/5192030/pexels-photo-5192030.jpeg"
@@ -18,7 +18,7 @@ export default function Menu() {
     {
       name: "Americano",
       description: "Smooth espresso with hot water, perfect balance of strength and flavor",
-      price: "$3.25",
+      price: "₹260",
       sizes: ["12oz", "16oz", "20oz"],
       popular: false,
       image: "https://images.pexels.com/photos/6205530/pexels-photo-6205530.jpeg"
@@ -26,7 +26,7 @@ export default function Menu() {
     {
       name: "Cappuccino",
       description: "Traditional Italian espresso with steamed milk and rich foam artistry",
-      price: "$4.50",
+      price: "₹360",
       sizes: ["8oz", "12oz"],
       popular: true,
       image: "https://images.pexels.com/photos/14745651/pexels-photo-14745651.jpeg"
@@ -34,7 +34,7 @@ export default function Menu() {
     {
       name: "Signature Latte",
       description: "Creamy steamed milk with espresso, topped with delicate latte art",
-      price: "$4.75",
+      price: "₹380",
       sizes: ["12oz", "16oz", "20oz"],
       popular: true,
       image: "https://images.pexels.com/photos/6205530/pexels-photo-6205530.jpeg"
@@ -42,7 +42,7 @@ export default function Menu() {
     {
       name: "Chocolate Mocha",
       description: "Decadent blend of espresso, rich chocolate, and steamed milk",
-      price: "$5.25",
+      price: "₹420",
       sizes: ["12oz", "16oz", "20oz"],
       popular: false,
       image: "https://images.pexels.com/photos/5192030/pexels-photo-5192030.jpeg"
@@ -50,86 +50,96 @@ export default function Menu() {
     {
       name: "Caramel Macchiato",
       description: "Vanilla syrup, steamed milk, espresso, and golden caramel drizzle",
-      price: "$5.50",
+      price: "₹440",
       sizes: ["12oz", "16oz", "20oz"],
       popular: true,
       image: "https://images.pexels.com/photos/14745651/pexels-photo-14745651.jpeg"
     }
   ];
 
-  const foodItems = [
+    const foodItems = [
     {
       name: "Buttery Croissant",
       description: "Flaky, golden pastry baked fresh daily with French butter",
-      price: "$3.50",
+      price: "₹280",
       category: "Pastries",
-      prepTime: "2 min"
+      prepTime: "2 min",
+      image: "https://images.pexels.com/photos/14111071/pexels-photo-14111071.jpeg"
     },
     {
       name: "Wild Blueberry Muffin",
       description: "Moist muffin bursting with wild blueberries and lemon zest",
-      price: "$3.25",
+      price: "₹260",
       category: "Pastries",
-      prepTime: "Ready"
+      prepTime: "Ready",
+      image: "https://images.pexels.com/photos/14111071/pexels-photo-14111071.jpeg"
     },
     {
       name: "Artisan Avocado Toast",
       description: "Multigrain sourdough with smashed avocado, lime, and sea salt",
-      price: "$8.50",
+      price: "₹680",
       category: "Breakfast",
-      prepTime: "5 min"
+      prepTime: "5 min",
+      image: "https://images.pexels.com/photos/6327126/pexels-photo-6327126.jpeg"
     },
     {
       name: "Breakfast Sandwich",
       description: "Farm-fresh egg, aged cheese, and choice of meat on English muffin",
-      price: "$7.25",
+      price: "₹580",
       category: "Breakfast",
-      prepTime: "8 min"
+      prepTime: "8 min",
+      image: "https://images.pexels.com/photos/6327126/pexels-photo-6327126.jpeg"
     },
     {
       name: "Greek Yogurt Parfait",
       description: "Layered with house-made granola and seasonal fresh berries",
-      price: "$6.75",
+      price: "₹540",
       category: "Healthy",
-      prepTime: "Ready"
+      prepTime: "Ready",
+      image: "https://images.pexels.com/photos/6327126/pexels-photo-6327126.jpeg"
     },
     {
       name: "Power Quinoa Bowl",
       description: "Organic quinoa with roasted vegetables and tahini dressing",
-      price: "$11.50",
+      price: "₹920",
       category: "Healthy",
-      prepTime: "7 min"
+      prepTime: "7 min",
+      image: "https://images.pexels.com/photos/6327126/pexels-photo-6327126.jpeg"
     }
   ];
 
-  const specialties = [
+    const specialties = [
     {
       name: "Nitro Cold Brew",
       description: "Smooth cold brew infused with nitrogen for a creamy, velvety texture",
-      price: "$4.75",
+      price: "₹380",
       seasonal: false,
-      new: true
+      new: true,
+      image: "https://images.pexels.com/photos/5741238/pexels-photo-5741238.jpeg"
     },
     {
       name: "Iced Matcha Latte",
       description: "Premium ceremonial-grade matcha with oat milk over ice",
-      price: "$5.25",
+      price: "₹420",
       seasonal: false,
-      organic: true
+      organic: true,
+      image: "https://images.pexels.com/photos/32158135/pexels-photo-32158135.jpeg"
     },
     {
       name: "Pumpkin Spice Latte",
       description: "Fall favorite with real pumpkin, cinnamon, and warm spices",
-      price: "$5.75",
+      price: "₹460",
       seasonal: true,
-      limited: true
+      limited: true,
+      image: "https://images.pexels.com/photos/5741238/pexels-photo-5741238.jpeg"
     },
     {
       name: "Honey Lavender Latte",
       description: "Floral lavender and local honey with steamed milk",
-      price: "$5.50",
+      price: "₹440",
       seasonal: false,
-      signature: true
+      signature: true,
+      image: "https://images.pexels.com/photos/32158135/pexels-photo-32158135.jpeg"
     }
   ];
 

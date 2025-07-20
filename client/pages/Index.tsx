@@ -1,163 +1,422 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Coffee, Star, Clock, MapPin } from "lucide-react";
+import { Coffee, Star, Clock, MapPin, ChefHat, Leaf, Award } from "lucide-react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function Index() {
+  const fadeIn = {
+    initial: { opacity: 0, y: 30 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6 }
+  };
+
+  const staggerContainer = {
+    animate: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const scaleOnHover = {
+    whileHover: { scale: 1.05 },
+    transition: { type: "spring", stiffness: 300 }
+  };
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-coffee-900 via-coffee-800 to-brown-900"></div>
-        <div className="absolute inset-0 bg-black/40"></div>
-        
-        <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            Welcome to <span className="text-coffee-300">BrewCraft</span>
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 text-coffee-100 max-w-2xl mx-auto">
-            Where every cup tells a story. Experience premium coffee crafted with passion 
-            and served with love in the heart of the city.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-coffee-500 hover:bg-coffee-600 text-white text-lg px-8 py-6">
-              <Link to="/menu" className="flex items-center gap-2">
-                <Coffee className="h-5 w-5" />
-                Explore Menu
-              </Link>
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-coffee-300 text-coffee-100 hover:bg-coffee-300 hover:text-coffee-900 text-lg px-8 py-6"
-            >
-              <Link to="/locations" className="flex items-center gap-2">
-                <MapPin className="h-5 w-5" />
-                Find Location
-              </Link>
-            </Button>
-          </div>
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          style={{
+            backgroundImage: `url('https://images.pexels.com/photos/14745651/pexels-photo-14745651.jpeg')`,
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
         </div>
+        
+        <motion.div 
+          className="relative z-10 text-center text-white max-w-6xl mx-auto px-4"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
+        >
+          <motion.h1 
+            className="text-6xl md:text-8xl font-bold mb-6 leading-tight"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            Artisan <span className="text-gold-400 font-serif">Coffee</span>
+            <br />
+            <span className="bg-gradient-to-r from-gold-400 to-gold-200 bg-clip-text text-transparent">
+              Crafted Daily
+            </span>
+          </motion.h1>
+          
+          <motion.p 
+            className="text-xl md:text-2xl mb-12 text-coffee-100 max-w-3xl mx-auto leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+            From bean to cup, experience the perfect harmony of tradition and innovation. 
+            Every sip tells a story of craftsmanship, passion, and the finest ingredients sourced globally.
+          </motion.p>
+          
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-6 justify-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1 }}
+          >
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button size="lg" className="bg-gold-600 hover:bg-gold-700 text-white text-lg px-12 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300">
+                <Link to="/menu" className="flex items-center gap-3">
+                  <Coffee className="h-6 w-6" />
+                  Explore Our Menu
+                </Link>
+              </Button>
+            </motion.div>
+            
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-2 border-gold-400 text-gold-100 hover:bg-gold-400 hover:text-espresso-900 text-lg px-12 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 backdrop-blur-sm"
+              >
+                <Link to="/locations" className="flex items-center gap-3">
+                  <MapPin className="h-6 w-6" />
+                  Find Our Café
+                </Link>
+              </Button>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+
+        {/* Floating Coffee Bean Animation */}
+        <motion.div
+          className="absolute top-20 left-10 text-gold-400"
+          animate={{ 
+            y: [0, -20, 0],
+            rotate: [0, 10, 0]
+          }}
+          transition={{ 
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
+          <Coffee className="h-8 w-8 opacity-30" />
+        </motion.div>
+        
+        <motion.div
+          className="absolute bottom-32 right-16 text-gold-300"
+          animate={{ 
+            y: [0, -15, 0],
+            rotate: [0, -10, 0]
+          }}
+          transition={{ 
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+        >
+          <Coffee className="h-6 w-6 opacity-20" />
+        </motion.div>
       </section>
 
       {/* Featured Coffee */}
-      <section className="py-20 bg-background">
+      <section className="py-24 bg-gradient-to-b from-coffee-50 to-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 text-foreground">Featured Coffee</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Discover our signature blends and seasonal favorites
+          <motion.div 
+            className="text-center mb-20"
+            {...fadeIn}
+          >
+            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-espresso-900">
+              Signature <span className="text-gold-600 font-serif">Blends</span>
+            </h2>
+            <p className="text-xl text-espresso-700 max-w-3xl mx-auto">
+              Discover our masterfully crafted coffee blends, each with its own unique character and story
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-3 gap-10"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
             {[
               {
-                name: "BrewCraft Signature Blend",
-                description: "Our flagship blend with notes of chocolate and caramel",
+                name: "Heritage Roast",
+                description: "Rich, full-bodied blend with notes of dark chocolate and caramelized sugar",
                 price: "$4.50",
                 rating: 4.9,
-                image: "☕"
+                image: "https://images.pexels.com/photos/6205530/pexels-photo-6205530.jpeg",
+                popular: true
               },
               {
-                name: "Single Origin Ethiopia",
-                description: "Bright and fruity with floral aromatics",
+                name: "Golden Morning",
+                description: "Bright and smooth with hints of honey and citrus fruits",
                 price: "$5.25",
                 rating: 4.8,
-                image: "🌿"
+                image: "https://images.pexels.com/photos/5192030/pexels-photo-5192030.jpeg"
               },
               {
-                name: "Dark Roast Espresso",
-                description: "Bold and intense, perfect for lattes",
+                name: "Midnight Espresso",
+                description: "Bold, intense espresso perfect for those who crave depth",
                 price: "$3.75",
                 rating: 4.7,
-                image: "🖤"
+                image: "https://images.pexels.com/photos/14745651/pexels-photo-14745651.jpeg"
               }
             ].map((coffee, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="text-6xl mb-4 text-center">{coffee.image}</div>
-                  <h3 className="text-xl font-semibold mb-2">{coffee.name}</h3>
-                  <p className="text-muted-foreground mb-4">{coffee.description}</p>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-1">
-                      <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                      <span className="text-sm font-medium">{coffee.rating}</span>
-                    </div>
-                    <span className="text-lg font-bold text-primary">{coffee.price}</span>
+              <motion.div key={index} variants={fadeIn}>
+                <Card className="group hover:shadow-2xl transition-all duration-500 border-0 bg-white/80 backdrop-blur-sm overflow-hidden">
+                  <div className="relative h-64 overflow-hidden">
+                    <img 
+                      src={coffee.image} 
+                      alt={coffee.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    {coffee.popular && (
+                      <div className="absolute top-4 right-4 bg-gold-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        Popular
+                      </div>
+                    )}
                   </div>
-                </CardContent>
-              </Card>
+                  <CardContent className="p-8">
+                    <h3 className="text-2xl font-bold mb-3 text-espresso-900">{coffee.name}</h3>
+                    <p className="text-espresso-600 mb-6 line-height-relaxed">{coffee.description}</p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Star className="h-5 w-5 fill-gold-400 text-gold-400" />
+                        <span className="text-sm font-medium text-espresso-700">{coffee.rating}</span>
+                      </div>
+                      <span className="text-2xl font-bold text-primary">{coffee.price}</span>
+                    </div>
+                    <motion.div className="mt-6" {...scaleOnHover}>
+                      <Button className="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg font-semibold transition-all duration-300">
+                        Add to Order
+                      </Button>
+                    </motion.div>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-20 bg-muted">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Why Choose BrewCraft?</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              We're committed to delivering the perfect coffee experience
+      <section className="py-24 bg-gradient-to-br from-espresso-900 via-espresso-800 to-coffee-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <img 
+            src="https://images.pexels.com/photos/1137745/pexels-photo-1137745.jpeg" 
+            alt="Coffee shop interior"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.div 
+            className="text-center mb-20"
+            {...fadeIn}
+          >
+            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+              Why <span className="text-gold-400 font-serif">Choose</span> Us?
+            </h2>
+            <p className="text-xl text-coffee-100 max-w-3xl mx-auto">
+              We're not just serving coffee – we're creating experiences that awaken your senses
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-3 gap-12"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
             {[
               {
-                icon: Coffee,
-                title: "Premium Quality",
-                description: "We source the finest beans from sustainable farms worldwide"
+                icon: Award,
+                title: "Award-Winning Quality",
+                description: "Our beans are sourced from award-winning farms and roasted to perfection by master craftsmen"
               },
               {
                 icon: Clock,
-                title: "Fresh Daily",
-                description: "Our coffee is roasted daily to ensure maximum freshness"
+                title: "Freshly Roasted Daily",
+                description: "Every batch is roasted in small quantities daily to ensure maximum flavor and aroma"
               },
               {
-                icon: Star,
-                title: "Expert Baristas",
-                description: "Our skilled baristas craft each cup with precision and care"
+                icon: ChefHat,
+                title: "Master Baristas",
+                description: "Our skilled artisans transform each cup into a work of art with passion and precision"
               }
             ].map((feature, index) => (
-              <div key={index} className="text-center">
-                <div className="mb-6 flex justify-center">
-                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
-                    <feature.icon className="h-8 w-8 text-primary-foreground" />
+              <motion.div 
+                key={index} 
+                className="text-center group"
+                variants={fadeIn}
+                whileHover={{ y: -10 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <div className="mb-8 flex justify-center">
+                  <div className="w-20 h-20 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                    <feature.icon className="h-10 w-10 text-espresso-900" />
                   </div>
                 </div>
-                <h3 className="text-2xl font-semibold mb-4">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </div>
+                <h3 className="text-2xl font-bold mb-6 text-gold-100">{feature.title}</h3>
+                <p className="text-coffee-200 text-lg leading-relaxed">{feature.description}</p>
+              </motion.div>
             ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section className="py-24 bg-coffee-50">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-5xl font-bold mb-8 text-espresso-900">
+                The Perfect <span className="text-gold-600 font-serif">Coffee</span> Experience
+              </h2>
+              <div className="space-y-6 text-lg text-espresso-700">
+                <p className="leading-relaxed">
+                  Step into our world where the aroma of freshly ground beans mingles with 
+                  the gentle hum of conversation and the artful precision of our baristas.
+                </p>
+                <p className="leading-relaxed">
+                  Every element – from our handpicked beans to our carefully crafted atmosphere – 
+                  is designed to create moments of pure coffee bliss.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-6 mt-12">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-gold-600 mb-2">14+</div>
+                  <div className="text-espresso-600">Years of Excellence</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-gold-600 mb-2">50k+</div>
+                  <div className="text-espresso-600">Happy Customers</div>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src="https://images.pexels.com/photos/1137745/pexels-photo-1137745.jpeg" 
+                  alt="Coffee shop interior"
+                  className="w-full h-[500px] object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              </div>
+              
+              {/* Floating card */}
+              <motion.div
+                className="absolute -bottom-8 -left-8 bg-white p-6 rounded-xl shadow-xl"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <div className="flex items-center gap-3 mb-2">
+                  <Leaf className="h-6 w-6 text-green-600" />
+                  <span className="font-semibold text-espresso-900">Sustainably Sourced</span>
+                </div>
+                <p className="text-sm text-espresso-600">
+                  100% ethically sourced beans supporting local farmers
+                </p>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-4">Ready for Your Perfect Cup?</h2>
-          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Visit us today or order online for pickup. Your coffee adventure starts here.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
-              variant="secondary"
-              className="text-lg px-8 py-6"
-            >
-              Order Online
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary text-lg px-8 py-6"
-            >
-              <Link to="/locations">Visit Store</Link>
-            </Button>
-          </div>
+      <section className="py-24 bg-gradient-to-r from-primary via-espresso-800 to-primary text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+            className="absolute top-10 left-10 text-gold-400"
+          >
+            <Coffee className="h-32 w-32" />
+          </motion.div>
+          <motion.div
+            animate={{ rotate: -360 }}
+            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+            className="absolute bottom-10 right-10 text-gold-300"
+          >
+            <Coffee className="h-24 w-24" />
+          </motion.div>
+        </div>
+        
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <motion.h2 
+            className="text-5xl md:text-6xl font-bold mb-6"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            Ready for Your <span className="text-gold-400 font-serif">Perfect</span> Cup?
+          </motion.h2>
+          
+          <motion.p 
+            className="text-xl mb-12 opacity-90 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Join thousands of coffee lovers who start their day with our exceptional brews. 
+            Your perfect coffee moment awaits.
+          </motion.p>
+          
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-6 justify-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <motion.div {...scaleOnHover}>
+              <Button 
+                size="lg" 
+                className="bg-gold-600 hover:bg-gold-700 text-espresso-900 text-lg px-12 py-6 rounded-full font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
+              >
+                Order Online Now
+              </Button>
+            </motion.div>
+            
+            <motion.div {...scaleOnHover}>
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="border-2 border-gold-400 text-gold-100 hover:bg-gold-400 hover:text-espresso-900 text-lg px-12 py-6 rounded-full font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
+              >
+                <Link to="/locations">Visit Our Café</Link>
+              </Button>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
     </div>

@@ -100,8 +100,8 @@ export default function Index() {
               <Button 
                 asChild
                 size="lg" 
-                variant="outline" 
-                className="border-2 border-gold-400 text-gold-100 hover:bg-gold-400 hover:text-espresso-900 text-lg px-12 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 backdrop-blur-sm"
+                 
+                className="bg-gold-600 hover:bg-gold-700 text-white text-lg px-12 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 backdrop-blur-sm"
               >
                 <Link to="/locations" className="flex items-center gap-3">
                   <MapPin className="h-6 w-6" />
@@ -435,8 +435,8 @@ export default function Index() {
               <Button 
                 asChild
                 size="lg" 
-                variant="outline"
-                className="border-2 border-gold-400 text-gold-100 hover:bg-gold-400 hover:text-espresso-900 text-lg px-12 py-6 rounded-full font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
+                
+                className="bg-gold-600 hover:bg-gold-700 text-white text-lg px-12 py-6 rounded-full font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
               >
                 <Link to="/locations">Visit Our Café</Link>
               </Button>

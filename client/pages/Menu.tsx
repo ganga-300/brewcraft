@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Star, Plus, Clock, Leaf } from "lucide-react";
 
 export default function Menu() {
-    const coffeeItems = [
+  const coffeeItems = [
     {
       name: "Classic Espresso",
       description: "Rich and bold single shot with intense aroma and full body",
@@ -57,7 +57,7 @@ export default function Menu() {
     }
   ];
 
-    const foodItems = [
+  const foodItems = [
     {
       name: "Buttery Croissant",
       description: "Flaky, golden pastry baked fresh daily with French butter",
@@ -108,7 +108,7 @@ export default function Menu() {
     }
   ];
 
-    const specialties = [
+  const specialties = [
     {
       name: "Nitro Cold Brew",
       description: "Smooth cold brew infused with nitrogen for a creamy, velvety texture",
@@ -202,8 +202,13 @@ export default function Menu() {
                 animate="animate"
               >
                 {coffeeItems.map((item, index) => (
-                  <motion.div key={index} variants={fadeIn}>
-                    <Card className="group hover:shadow-2xl transition-all duration-500 border-0 bg-white/90 backdrop-blur-sm overflow-hidden h-full">
+                  <motion.div 
+                    key={index} 
+                    variants={fadeIn}
+                    whileHover={{ y: -5 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
+                    <Card className="border-0 bg-white/90 backdrop-blur-sm overflow-hidden h-full shadow-lg hover:shadow-xl transition-shadow duration-300">
                       {item.popular && (
                         <div className="absolute top-4 right-4 z-10">
                           <Badge className="bg-gold-500 hover:bg-gold-600 text-white font-semibold">
@@ -217,7 +222,7 @@ export default function Menu() {
                         <img 
                           src={item.image} 
                           alt={item.name}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                          className="w-full h-full object-cover transition-transform duration-300"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                       </div>
@@ -241,12 +246,10 @@ export default function Menu() {
                           </div>
                         </div>
                         
-                        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                          <Button className="w-full bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-                            <Plus className="w-4 h-4 mr-2" />
-                            Add to Order
-                          </Button>
-                        </motion.div>
+                        <Button className="w-full bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                          <Plus className="w-4 h-4 mr-2" />
+                          Add to Order
+                        </Button>
                       </CardContent>
                     </Card>
                   </motion.div>
@@ -262,8 +265,22 @@ export default function Menu() {
                 animate="animate"
               >
                 {foodItems.map((item, index) => (
-                  <motion.div key={index} variants={fadeIn}>
-                    <Card className="group hover:shadow-2xl transition-all duration-500 border-0 bg-white/90 backdrop-blur-sm h-full">
+                  <motion.div 
+                    key={index} 
+                    variants={fadeIn}
+                    whileHover={{ y: -5 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
+                    <Card className="border-0 bg-white/90 backdrop-blur-sm h-full shadow-lg hover:shadow-xl transition-shadow duration-300">
+                      <div className="relative h-48 overflow-hidden">
+                        <img 
+                          src={item.image} 
+                          alt={item.name}
+                          className="w-full h-full object-cover transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                      </div>
+                      
                       <CardHeader className="pb-4">
                         <div className="flex justify-between items-start mb-2">
                           <CardTitle className="text-xl font-bold text-espresso-900">{item.name}</CardTitle>
@@ -293,12 +310,10 @@ export default function Menu() {
                       <CardContent className="pt-0">
                         <p className="text-espresso-600 mb-6 line-height-relaxed">{item.description}</p>
                         
-                        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                          <Button className="w-full bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-                            <Plus className="w-4 h-4 mr-2" />
-                            Add to Order
-                          </Button>
-                        </motion.div>
+                        <Button className="w-full bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                          <Plus className="w-4 h-4 mr-2" />
+                          Add to Order
+                        </Button>
                       </CardContent>
                     </Card>
                   </motion.div>
@@ -314,8 +329,13 @@ export default function Menu() {
                 animate="animate"
               >
                 {specialties.map((item, index) => (
-                  <motion.div key={index} variants={fadeIn}>
-                    <Card className="group hover:shadow-2xl transition-all duration-500 border-0 bg-white/90 backdrop-blur-sm h-full relative">
+                  <motion.div 
+                    key={index} 
+                    variants={fadeIn}
+                    whileHover={{ y: -5 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
+                    <Card className="border-0 bg-white/90 backdrop-blur-sm h-full relative shadow-lg hover:shadow-xl transition-shadow duration-300">
                       <div className="absolute top-4 right-4 flex flex-col gap-2 z-10">
                         {item.seasonal && (
                           <Badge className="bg-orange-500 hover:bg-orange-600 text-white font-semibold">
@@ -340,6 +360,15 @@ export default function Menu() {
                         )}
                       </div>
                       
+                      <div className="relative h-48 overflow-hidden">
+                        <img 
+                          src={item.image} 
+                          alt={item.name}
+                          className="w-full h-full object-cover transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                      </div>
+                      
                       <CardHeader>
                         <div className="flex justify-between items-start">
                           <CardTitle className="text-xl font-bold text-espresso-900 pr-4">{item.name}</CardTitle>
@@ -350,12 +379,10 @@ export default function Menu() {
                       <CardContent>
                         <p className="text-espresso-600 mb-6 line-height-relaxed">{item.description}</p>
                         
-                        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                          <Button className="w-full bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-                            <Plus className="w-4 h-4 mr-2" />
-                            Add to Order
-                          </Button>
-                        </motion.div>
+                        <Button className="w-full bg-gradient-to-r from-primary to-gold-600 hover:from-primary/90 hover:to-gold-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                          <Plus className="w-4 h-4 mr-2" />
+                          Add to Order
+                        </Button>
                       </CardContent>
                     </Card>
                   </motion.div>

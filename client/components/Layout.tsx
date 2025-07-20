@@ -1,6 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Coffee, MapPin, Phone, Mail } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Coffee, MapPin, Phone, Mail, Menu } from "lucide-react";
+import { useState } from "react";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,6 +10,7 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -22,7 +25,7 @@ export default function Layout({ children }: LayoutProps) {
             <span className="text-2xl font-bold text-primary">BrewCraft</span>
           </Link>
 
-          {/* Navigation */}
+                    {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             <Link
               to="/"
@@ -58,10 +61,65 @@ export default function Layout({ children }: LayoutProps) {
             </Link>
           </nav>
 
-          {/* Order Now Button */}
-          <Button className="bg-primary hover:bg-primary/90">
-            Order Now
-          </Button>
+          <div className="flex items-center gap-4">
+            {/* Order Now Button */}
+            <Button className="bg-primary hover:bg-primary/90 hidden sm:flex">
+              Order Now
+            </Button>
+
+            {/* Mobile Menu */}
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="md:hidden">
+                  <Menu className="h-5 w-5" />
+                  <span className="sr-only">Toggle menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+                <nav className="flex flex-col space-y-6 mt-6">
+                  <Link
+                    to="/"
+                    className={`text-lg font-medium transition-colors hover:text-primary ${
+                      isActive("/") ? "text-primary" : "text-muted-foreground"
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Home
+                  </Link>
+                  <Link
+                    to="/menu"
+                    className={`text-lg font-medium transition-colors hover:text-primary ${
+                      isActive("/menu") ? "text-primary" : "text-muted-foreground"
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Menu
+                  </Link>
+                  <Link
+                    to="/locations"
+                    className={`text-lg font-medium transition-colors hover:text-primary ${
+                      isActive("/locations") ? "text-primary" : "text-muted-foreground"
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Locations
+                  </Link>
+                  <Link
+                    to="/about"
+                    className={`text-lg font-medium transition-colors hover:text-primary ${
+                      isActive("/about") ? "text-primary" : "text-muted-foreground"
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    About
+                  </Link>
+                  <Button className="bg-primary hover:bg-primary/90 mt-4" onClick={() => setIsOpen(false)}>
+                    Order Now
+                  </Button>
+                </nav>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </header>
 
